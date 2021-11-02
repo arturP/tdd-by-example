@@ -39,4 +39,9 @@ public class MoneyTest {
         assertEquals(new Franc(10), new Franc(10));
         assertNotEquals(new Franc(1), new Franc(2));
     }
+
+    @Test
+    void compareTwoObjectDifferentTypesShouldNotEquals() {
+        assertNotEquals(new Franc(3), new Dollar(3));
+    }
 }
