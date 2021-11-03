@@ -89,11 +89,33 @@ public class MoneyTest {
 
     @Test
     void mixedAdditionTest() {
-        Money fiveDollars = Money.dollar(5);
-        Money tenFranks = Money.franc(10);
+        Expression fiveDollars = Money.dollar(5);
+        Expression tenFranks = Money.franc(10);
         Bank bank = new Bank();
         bank.addRate("CHF", "USD", BigDecimal.valueOf(2));
         Money result = bank.reduce(fiveDollars.plus(tenFranks), "USD");
         assertEquals(Money.dollar(10), result);
+    }
+
+    @Test
+    void sumPlusMoneyTest() {
+        Expression fiveDollars = Money.dollar(5);
+        Expression tenFrancs = Money.franc(10);
+        Bank bank = new Bank();
+        bank.addRate("CHF", "USD", BigDecimal.valueOf(2));
+        Expression sum = new Sum(fiveDollars, tenFrancs).plus(fiveDollars);
+        Money result = bank.reduce(sum, "USD");
+        assertEquals(Money.dollar(15), result);
+    }
+
+    @Test
+    void sumTimesTest() {
+        Expression fiveDollars = Money.dollar(5);
+        Expression tenFrancs = Money.franc(10);
+        Bank bank = new Bank();
+        bank.addRate("CHF", "USD", BigDecimal.valueOf(2));
+        Expression sum = new Sum(fiveDollars, tenFrancs).multiply(2);
+        Money result = bank.reduce(sum, "USD");
+        assertEquals(Money.dollar(20), result);
     }
 }

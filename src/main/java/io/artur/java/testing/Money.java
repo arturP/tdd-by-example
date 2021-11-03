@@ -8,8 +8,8 @@ import java.util.Objects;
  */
 public class Money implements Expression {
 
-    protected BigDecimal amount;
-    protected String currency;
+    protected final BigDecimal amount;
+    protected final String currency;
 
     public Money(double amount, String currency) {
         this.amount = BigDecimal.valueOf(amount);

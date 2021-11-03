@@ -9,7 +9,7 @@ import java.util.Map;
  */
 public class Bank {
 
-    private Map<Pair, BigDecimal> rateMap = new HashMap<>();
+    private final Map<Pair, BigDecimal> rateMap = new HashMap<>();
 
     public Money reduce(Expression source, String toCurrency) {
 

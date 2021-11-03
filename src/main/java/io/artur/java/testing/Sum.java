@@ -6,8 +6,8 @@ import java.math.BigDecimal;
  *
  */
 public class Sum implements Expression{
-    Expression augmend;
-    Expression addmend;
+    final Expression augmend;
+    final Expression addmend;
 
     public Sum(Expression augmend, Expression addmend) {
         this.augmend = augmend;
@@ -23,7 +23,12 @@ public class Sum implements Expression{
 
     @Override
     public Expression plus(Expression money) {
-        return null;
+        return new Sum(this, money);
+    }
+
+    @Override
+    public Expression multiply(int times) {
+        return new Sum(this.augmend.multiply(times), this.augmend.multiply(times));
     }
 
     @Override
