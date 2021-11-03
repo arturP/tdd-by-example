@@ -14,34 +14,32 @@ public class MoneyTest {
 
     @Test
     void testMultiplicationOfMoneyDollar() {
-        Dollar five = new Dollar(5.00);
-        Dollar fiveMultipleTwo = five.multiply(2);
+        Money five = Money.dollar(5.00);
 
-        assertEquals(BigDecimal.valueOf(10.00), fiveMultipleTwo.getAmount());
+        assertEquals(BigDecimal.valueOf(10.00), five.multiply(2).getAmount());
     }
 
     @Test
     void testEqualityOfMoneyDollar() {
-        assertEquals(new Dollar(10), new Dollar(10));
-        assertNotEquals(new Dollar(1), new Dollar(2));
+        assertEquals(Money.dollar(10), Money.dollar(10));
+        assertNotEquals(Money.dollar(1), Money.dollar(2));
     }
 
     @Test
     void testMultiplicationOfMoneyFranc() {
-        Franc five = new Franc(5.00);
-        Franc fiveMultipleTwo = five.multiply(2);
+        Money five = Money.franc(5.00);
 
-        assertEquals(BigDecimal.valueOf(10.00), fiveMultipleTwo.getAmount());
+        assertEquals(BigDecimal.valueOf(10.00), five.multiply(2).getAmount());
     }
 
     @Test
     void testEqualityOfMoneyFranc() {
-        assertEquals(new Franc(10), new Franc(10));
-        assertNotEquals(new Franc(1), new Franc(2));
+        assertEquals(Money.franc(10), Money.franc(10));
+        assertNotEquals(Money.franc(1), Money.franc(2));
     }
 
     @Test
     void compareTwoObjectDifferentTypesShouldNotEquals() {
-        assertNotEquals(new Franc(3), new Dollar(3));
+        assertNotEquals(new Franc(3), Money.dollar(3));
     }
 }

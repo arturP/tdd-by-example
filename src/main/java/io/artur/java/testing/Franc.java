@@ -12,7 +12,7 @@ public class Franc extends Money{
         this.amount = BigDecimal.valueOf(amount);
     }
 
-    public Franc multiply(int times) {
+    public Money multiply(int times) {
         return new Franc(this.amount.multiply(BigDecimal.valueOf(times)).doubleValue());
     }
 }

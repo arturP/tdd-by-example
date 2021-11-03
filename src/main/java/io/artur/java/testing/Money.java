@@ -14,6 +14,16 @@ public abstract class Money {
         return amount;
     }
 
+    public abstract Money multiply(int times);
+
+    public static Money dollar(double amount) {
+        return new Dollar(amount);
+    }
+
+    public static Money franc(double amount) {
+        return new Franc(amount);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

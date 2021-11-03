@@ -12,7 +12,7 @@ public class Dollar extends Money{
         this.amount = BigDecimal.valueOf(amount);
     }
 
-    public Dollar multiply(int times) {
+    public Money multiply(int times) {
         return new Dollar(amount.multiply(BigDecimal.valueOf(times)).doubleValue());
     }
 
