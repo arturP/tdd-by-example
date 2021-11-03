@@ -1,18 +1,17 @@
 package io.artur.java.testing;
 
 import java.math.BigDecimal;
-import java.util.Objects;
 
 /**
  *
  */
 public class Franc extends Money{
 
-    public Franc(double amount) {
-        this.amount = BigDecimal.valueOf(amount);
+    public Franc(double amount, String currency) {
+        super(amount, currency);
     }
 
     public Money multiply(int times) {
-        return new Franc(this.amount.multiply(BigDecimal.valueOf(times)).doubleValue());
+        return Money.franc(this.amount.multiply(BigDecimal.valueOf(times)).doubleValue());
     }
 }

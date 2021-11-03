@@ -40,6 +40,12 @@ public class MoneyTest {
 
     @Test
     void compareTwoObjectDifferentTypesShouldNotEquals() {
-        assertNotEquals(new Franc(3), Money.dollar(3));
+        assertNotEquals(Money.franc(3), Money.dollar(3));
+    }
+
+    @Test
+    void currencyTest() {
+        assertEquals("USD", Money.dollar(1).currency());
+        assertEquals("CHF", Money.franc(1).currency());
     }
 }

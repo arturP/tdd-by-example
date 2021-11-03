@@ -9,6 +9,12 @@ import java.util.Objects;
 public abstract class Money {
 
     protected BigDecimal amount;
+    protected String currency;
+
+    public Money(double amount, String currency) {
+        this.amount = BigDecimal.valueOf(amount);
+        this.currency = currency;
+    }
 
     public BigDecimal getAmount() {
         return amount;
@@ -17,12 +23,16 @@ public abstract class Money {
     public abstract Money multiply(int times);
 
     public static Money dollar(double amount) {
-        return new Dollar(amount);
+        return new Dollar(amount, "USD");
     }
 
     public static Money franc(double amount) {
-        return new Franc(amount);
+        return new Franc(amount, "CHF");
     }
+
+    public String currency() {
+        return currency;
+    };
 
     @Override
     public boolean equals(Object o) {
