@@ -72,4 +72,18 @@ public class MoneyTest {
         Money result = bank.reduce(Money.dollar(1), "USD");
         assertEquals(Money.dollar(1), result);
     }
+
+    @Test
+    void reduceMoneyDifferentCurrenciesTest() {
+        Bank bank = new Bank();
+        bank.addRate("CHF", "USD", BigDecimal.valueOf(2));
+        Money result = bank.reduce(Money.franc(2), "USD");
+        assertEquals(Money.dollar(1), result);
+    }
+
+    @Test
+    void identityRateTest() {
+        assertEquals(BigDecimal.ONE, new Bank().rate("USD", "USD"));
+        assertEquals(BigDecimal.ONE, new Bank().rate("CHF", "CHF"));
+    }
 }
