@@ -6,7 +6,7 @@ import java.util.Objects;
 /**
  *
  */
-public class Money {
+public class Money implements Expression{
 
     protected BigDecimal amount;
     protected String currency;
@@ -36,6 +36,10 @@ public class Money {
         return new Money(this.amount.multiply(BigDecimal.valueOf(times)).doubleValue(), this.currency);
     }
 
+    public Expression plus(Money money) {
+        return new Sum(this, money);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -57,5 +61,10 @@ public class Money {
                 "amount=" + amount +
                 ", currency='" + currency + '\'' +
                 '}';
+    }
+
+    @Override
+    public Money reduce(String to) {
+        return this;
     }
 }
