@@ -86,4 +86,14 @@ public class MoneyTest {
         assertEquals(BigDecimal.ONE, new Bank().rate("USD", "USD"));
         assertEquals(BigDecimal.ONE, new Bank().rate("CHF", "CHF"));
     }
+
+    @Test
+    void mixedAdditionTest() {
+        Money fiveDollars = Money.dollar(5);
+        Money tenFranks = Money.franc(10);
+        Bank bank = new Bank();
+        bank.addRate("CHF", "USD", BigDecimal.valueOf(2));
+        Money result = bank.reduce(fiveDollars.plus(tenFranks), "USD");
+        assertEquals(Money.dollar(10), result);
+    }
 }

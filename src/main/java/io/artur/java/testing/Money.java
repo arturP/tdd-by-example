@@ -32,11 +32,11 @@ public class Money implements Expression {
         return currency;
     }
 
-    public Money multiply(int times) {
+    public Expression multiply(int times) {
         return new Money(this.amount.multiply(BigDecimal.valueOf(times)).doubleValue(), this.currency);
     }
 
-    public Expression plus(Money money) {
+    public Expression plus(Expression money) {
         return new Sum(this, money);
     }
 

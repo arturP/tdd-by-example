@@ -1,23 +1,33 @@
 package io.artur.java.testing;
 
+import java.math.BigDecimal;
+
 /**
  *
  */
 public class Sum implements Expression{
-    Money augmend;
-    Money addmend;
+    Expression augmend;
+    Expression addmend;
 
-    public Sum(Money augmend, Money addmend) {
+    public Sum(Expression augmend, Expression addmend) {
         this.augmend = augmend;
         this.addmend = addmend;
     }
 
-    public Money reduce(String toCurrency) {
-        return new Money(addmend.amount.add(augmend.amount).doubleValue(), toCurrency);
+    @Override
+    public Money reduce(Bank bank, String to) {
+
+        return new Money(this.addmend.reduce(bank, to).amount
+                .add(this.augmend.reduce(bank, to).amount).doubleValue(), to);
     }
 
     @Override
-    public Money reduce(Bank bank, String to) {
-        return new Money(this.addmend.amount.add(this.augmend.amount).doubleValue(), to);
+    public Expression plus(Expression money) {
+        return null;
+    }
+
+    @Override
+    public BigDecimal getAmount() {
+        return this.addmend.plus(this.augmend).getAmount();
     }
 }
